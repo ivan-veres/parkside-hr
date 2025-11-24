@@ -1,26 +1,31 @@
 :root {
-  /* Color Palette - Deep Blues & Gold Accents */
-  --color-primary: #0A2540;
-  --color-primary-light: #1A3A5C;
-  --color-primary-dark: #051729;
-  --color-accent: #F59E0B;
-  --color-accent-light: #FBBF24;
-  --color-accent-dark: #D97706;
-  
+  /* Parkside Brand Colors */
+  --color-primary: #1A1A1A;
+  --color-primary-light: #2D2D2D;
+  --color-primary-dark: #0A0A0A;
+  --color-accent: #8BC53F;
+  --color-accent-light: #A0D655;
+  --color-accent-dark: #6FA82E;
+
+  /* Secondary Accent - Yellow */
+  --color-secondary: #FFD700;
+  --color-secondary-light: #FFE44D;
+  --color-secondary-dark: #E6C200;
+
   /* Neutrals */
   --color-bg: #FFFFFF;
   --color-bg-alt: #F8FAFC;
   --color-surface: #FFFFFF;
-  --color-text: #1E293B;
+  --color-text: #1A1A1A;
   --color-text-light: #64748B;
   --color-text-inverse: #FFFFFF;
   --color-border: #E2E8F0;
-  
+
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, #0A2540 0%, #1A3A5C 100%);
-  --gradient-accent: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
-  --gradient-hero: linear-gradient(180deg, #0A2540 0%, #1A3A5C 50%, #0A2540 100%);
-  
+  --gradient-primary: linear-gradient(135deg, #1A1A1A 0%, #2D2D2D 100%);
+  --gradient-accent: linear-gradient(135deg, #8BC53F 0%, #A0D655 100%);
+  --gradient-hero: linear-gradient(180deg, #1A1A1A 0%, #2D2D2D 50%, #1A1A1A 100%);
+
   /* Spacing */
   --spacing-xs: 0.5rem;
   --spacing-sm: 1rem;
@@ -29,11 +34,11 @@
   --spacing-xl: 3rem;
   --spacing-2xl: 4rem;
   --spacing-3xl: 6rem;
-  
+
   /* Typography */
   --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
   --font-display: var(--font-jakarta), var(--font-inter), system-ui, sans-serif;
-  
+
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
   --font-size-base: 1rem;
@@ -45,14 +50,14 @@
   --font-size-5xl: 3rem;
   --font-size-6xl: 3.75rem;
   --font-size-7xl: 4.5rem;
-  
+
   /* Shadows */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 30px rgba(245, 158, 11, 0.3);
-  
+  --shadow-glow: 0 0 30px rgba(139, 197, 63, 0.3);
+
   /* Border Radius */
   --radius-sm: 0.375rem;
   --radius-md: 0.5rem;
@@ -60,7 +65,7 @@
   --radius-xl: 1rem;
   --radius-2xl: 1.5rem;
   --radius-full: 9999px;
-  
+
   /* Transitions */
   --transition-fast: 150ms ease-in-out;
   --transition-base: 250ms ease-in-out;
@@ -90,7 +95,12 @@ body {
 }
 
 /* Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-display);
   font-weight: 700;
   line-height: 1.2;
@@ -158,7 +168,7 @@ a:hover {
     --font-size-4xl: 1.75rem;
     --font-size-3xl: 1.5rem;
   }
-  
+
   .container {
     padding: 0 var(--spacing-sm);
   }
@@ -170,6 +180,7 @@ a:hover {
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -181,6 +192,7 @@ a:hover {
     opacity: 0;
     transform: translateX(-30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -192,6 +204,7 @@ a:hover {
     opacity: 0;
     transform: translateX(30px);
   }
+
   to {
     opacity: 1;
     transform: translateX(0);
@@ -199,20 +212,38 @@ a:hover {
 }
 
 @keyframes pulse {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.8;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-10px);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 

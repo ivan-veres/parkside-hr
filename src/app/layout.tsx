@@ -1,6 +1,9 @@
+'use client'
+
+import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import CookieConsent from './components/CookieConsent'
 import './globals.css'
-import type { Metadata } from 'next'
 
 const inter = Inter({
     subsets: ['latin'],
@@ -14,17 +17,6 @@ const plusJakarta = Plus_Jakarta_Sans({
     display: 'swap',
 })
 
-export const metadata: Metadata = {
-    title: 'Premium Domain For Sale | Parkside.hr',
-    description: 'Acquire this premium Croatian domain name - perfect for LIDL\'s PARKSIDE brand expansion into Croatia. Premium .hr extension for local market presence.',
-    keywords: 'domain for sale, premium domain, parkside.hr, Croatian domain, LIDL PARKSIDE, Croatia domain',
-    openGraph: {
-        title: 'Premium Domain For Sale | Parkside.hr',
-        description: 'Acquire this premium Croatian domain name for LIDL\'s PARKSIDE brand.',
-        type: 'website',
-    },
-}
-
 export default function RootLayout({
     children,
 }: {
@@ -32,7 +24,27 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
-            <body>{children}</body>
+            <head>
+                <title>Premium Domain For Sale | Parkside.hr</title>
+                <meta name="description" content="Acquire this premium Croatian domain name - perfect for LIDL's PARKSIDE brand expansion into Croatia. Premium .hr extension for local market presence." />
+                <meta name="keywords" content="domain for sale, premium domain, parkside.hr, Croatian domain, LIDL PARKSIDE, Croatia domain" />
+                <meta property="og:title" content="Premium Domain For Sale | Parkside.hr" />
+                <meta property="og:description" content="Acquire this premium Croatian domain name for LIDL's PARKSIDE brand." />
+                <meta property="og:type" content="website" />
+            </head>
+            <body>
+                <GoogleReCaptchaProvider
+                    reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
+                    scriptProps={{
+                        async: true,
+                        defer: true,
+                        appendTo: 'head',
+                    }}
+                >
+                    {children}
+                    <CookieConsent />
+                </GoogleReCaptchaProvider>
+            </body>
         </html>
     )
 }

@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, FormEvent, ChangeEvent } from 'react'
+import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import styles from './ContactForm.module.css'
 
 interface FormData {
@@ -11,6 +12,7 @@ interface FormData {
 }
 
 export default function ContactForm() {
+    const { executeRecaptcha } = useGoogleReCaptcha()
     const [formData, setFormData] = useState<FormData>({
         name: '',
         email: '',
@@ -19,6 +21,7 @@ export default function ContactForm() {
     })
 
     const [status, setStatus] = useState<string>('')
+    const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -27,24 +30,50 @@ export default function ContactForm() {
         })
     }
 
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
 
-        // Create mailto link with form data
-        const subject = encodeURIComponent(`Domain Offer for Parkside.hr - ${formData.offer}`)
-        const body = encodeURIComponent(
-            `Name: ${formData.name}\nEmail: ${formData.email}\nOffer Amount: ${formData.offer}\n\nMessage:\n${formData.message}`
-        )
+        if (!executeRecaptcha) {
+            setStatus('❌ reCAPTCHA not loaded. Please refresh the page.')
+            return
+        }
 
-        window.location.href = `mailto:contact@parkside.hr?subject=${subject}&body=${body}`
+        setIsSubmitting(true)
+        setStatus('')
 
-        setStatus('Opening your email client...')
+        try {
+            // Execute reCAPTCHA to get token
+            const recaptchaToken = await executeRecaptcha('submit_offer')
 
-        // Reset form after a delay
-        setTimeout(() => {
-            setFormData({ name: '', email: '', offer: '', message: '' })
-            setStatus('')
-        }, 2000)
+            const response = await fetch('/api/send-email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    ...formData,
+                    recaptchaToken,
+                }),
+            })
+
+            const data = await response.json()
+
+            if (response.ok) {
+                setStatus('✅ Thank you! Your offer has been sent successfully.')
+                // Reset form after successful submission
+                setTimeout(() => {
+                    setFormData({ name: '', email: '', offer: '', message: '' })
+                    setStatus('')
+                }, 5000)
+            } else {
+                setStatus(`❌ Error: ${data.error || 'Failed to send offer. Please try again.'}`)
+            }
+        } catch (error) {
+            console.error('Submission error:', error)
+            setStatus('❌ Network error. Please check your connection and try again.')
+        } finally {
+            setIsSubmitting(false)
+        }
     }
 
     return (
@@ -97,6 +126,7 @@ export default function ContactForm() {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting}
                                     className={styles.input}
                                     placeholder="John Doe"
                                 />
@@ -113,6 +143,7 @@ export default function ContactForm() {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting}
                                     className={styles.input}
                                     placeholder="john@example.com"
                                 />
@@ -129,8 +160,9 @@ export default function ContactForm() {
                                     value={formData.offer}
                                     onChange={handleChange}
                                     required
+                                    disabled={isSubmitting}
                                     className={styles.input}
-                                    placeholder="$10,000"
+                                    placeholder="€10,000"
                                 />
                             </div>
 
@@ -143,6 +175,7 @@ export default function ContactForm() {
                                     name="message"
                                     value={formData.message}
                                     onChange={handleChange}
+                                    disabled={isSubmitting}
                                     rows={5}
                                     className={styles.textarea}
                                     placeholder="Tell us about your business and plans for this domain..."
@@ -150,14 +183,31 @@ export default function ContactForm() {
                             </div>
 
                             {status && (
-                                <div className={styles.status}>{status}</div>
+                                <div className={`${styles.status} ${status.includes('✅') ? styles.statusSuccess : styles.statusError}`}>
+                                    {status}
+                                </div>
                             )}
 
-                            <button type="submit" className={styles.submitButton}>
-                                Submit Offer
-                                <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
+                            <button
+                                type="submit"
+                                className={styles.submitButton}
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <svg className={styles.spinner} viewBox="0 0 24 24" fill="none">
+                                            <circle className={styles.spinnerCircle} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                        </svg>
+                                        Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        Submit Offer
+                                        <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                        </svg>
+                                    </>
+                                )}
                             </button>
 
                             <p className={styles.disclaimer}>
