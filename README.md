@@ -33,7 +33,7 @@ A modern, professional Next.js landing page for selling the premium Croatian dom
    - Professional form with validation
    - Email delivery via Resend API
    - Loading states and success/error feedback
-   - Sends to info@jotunn.eu
+   - Configurable recipient email
 
 ## 🛠️ Tech Stack
 
@@ -76,12 +76,12 @@ Create a `.env.local` file in the root directory:
 ```env
 RESEND_API_KEY=re_your_api_key_here
 RESEND_FROM_EMAIL=onboarding@resend.dev
-RESEND_TO_EMAIL=info@jotunn.eu
+RESEND_TO_EMAIL=your-email@example.com
 ```
 
 **Important Notes:**
 - `RESEND_FROM_EMAIL`: Use `onboarding@resend.dev` for testing, or verify your own domain in Resend
-- `RESEND_TO_EMAIL`: The email where form submissions will be sent (currently set to info@jotunn.eu)
+- `RESEND_TO_EMAIL`: The email where form submissions will be sent (set this to your email)
 - Never commit `.env.local` to version control (it's in `.gitignore`)
 
 ### 3. Verify Domain (Optional)
@@ -124,7 +124,7 @@ Form submissions are sent with a professionally designed HTML email template fea
 ### Email Content
 Each submission includes:
 - **Subject**: "Domain Offer for Parkside.hr - [Offer Amount]"
-- **To**: info@jotunn.eu
+- **To**: Your configured email address
 - **From**: Configured sender email
 - **Format**: Both HTML and plain text versions
 
@@ -226,7 +226,7 @@ This project is for domain sale purposes. All rights reserved.
 
 ## 👤 Contact
 
-For domain inquiries, use the contact form on the website or email: info@jotunn.eu
+For domain inquiries, use the contact form on the website.
 
 ---
 

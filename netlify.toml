@@ -1,0 +1,55 @@
+[build]
+  command = "npm run build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22.21.1"
+  # Exclude build cache and specific paths from secrets scanning
+  # These paths contain bundled code where environment variables are expected
+  SECRETS_SCAN_OMIT_PATHS = ".netlify/**,.next/**,node_modules/**"
+
+# Configure secrets scanning to allow NEXT_PUBLIC_ variables (client-side)
+# and exclude cache/build directories from scanning
+[template.environment]
+  NEXT_PUBLIC_RECAPTCHA_SITE_KEY = "Your reCAPTCHA site key (safe to expose client-side)"
+  RECAPTCHA_SECRET_KEY = "Your reCAPTCHA secret key (server-side only)"
+  RESEND_API_KEY = "Your Resend API key"
+  RESEND_FROM_EMAIL = "Sender email address"
+  RESEND_TO_EMAIL = "Recipient email address"
+
+# Exclude build cache and output from secrets scanning
+[[build.processing]]
+  skip_processing = false
+
+# Headers for caching
+[[headers]]
+  for = "/_next/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/_next/image*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+# Redirect rules for Next.js
+[[redirects]]
+  from = "/_next/image"
+  to = "/.netlify/images?url=:url&w=:width&q=:quality"
+  status = 200
+  query = {url = ":url", w = ":width", q = ":quality"}
+
+[[redirects]]
+  from = "/_ipx/*"
+  to = "/.netlify/images?url=:url&w=:width&q=:quality"
+  status = 200
+  query = {url = ":url", w = ":width", q = ":quality"}

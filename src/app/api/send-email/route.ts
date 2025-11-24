@@ -73,10 +73,19 @@ export async function POST(request: NextRequest) {
       )
     }
 
+    // Validate required environment variables
+    if (!process.env.RESEND_FROM_EMAIL || !process.env.RESEND_TO_EMAIL) {
+      console.error('Missing required environment variables: RESEND_FROM_EMAIL or RESEND_TO_EMAIL')
+      return NextResponse.json(
+        { error: 'Email service not configured' },
+        { status: 500 }
+      )
+    }
+
     // Send email via Resend
     const { data, error } = await resend.emails.send({
-      from: process.env.RESEND_FROM_EMAIL || 'onboarding@resend.dev',
-      to: process.env.RESEND_TO_EMAIL || 'info@jotunn.eu',
+      from: process.env.RESEND_FROM_EMAIL,
+      to: process.env.RESEND_TO_EMAIL,
       subject: `Domain Offer for Parkside.hr - ${body.offer}`,
       html: `
         <!DOCTYPE html>
