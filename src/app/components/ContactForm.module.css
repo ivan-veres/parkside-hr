@@ -2,6 +2,7 @@
     padding: var(--spacing-3xl) 0;
     background: var(--color-bg);
     position: relative;
+    scroll-margin-top: var(--spacing-xl);
 }
 
 .wrapper {

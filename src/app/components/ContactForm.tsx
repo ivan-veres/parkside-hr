@@ -34,7 +34,7 @@ export default function ContactForm() {
         e.preventDefault()
 
         if (!executeRecaptcha) {
-            setStatus('❌ reCAPTCHA not loaded. Please refresh the page.')
+            setStatus('reCAPTCHA not loaded. Please refresh the page.')
             return
         }
 
@@ -59,18 +59,18 @@ export default function ContactForm() {
             const data = await response.json()
 
             if (response.ok) {
-                setStatus('✅ Thank you! Your offer has been sent successfully.')
+                setStatus('Thank you! Your offer has been sent successfully.')
                 // Reset form after successful submission
                 setTimeout(() => {
                     setFormData({ name: '', email: '', offer: '', message: '' })
                     setStatus('')
                 }, 5000)
             } else {
-                setStatus(`❌ Error: ${data.error || 'Failed to send offer. Please try again.'}`)
+                setStatus(`Error: ${data.error || 'Failed to send offer. Please try again.'}`)
             }
         } catch (error) {
             console.error('Submission error:', error)
-            setStatus('❌ Network error. Please check your connection and try again.')
+            setStatus('Network error. Please check your connection and try again.')
         } finally {
             setIsSubmitting(false)
         }
