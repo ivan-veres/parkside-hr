@@ -1,6 +1,6 @@
 .footer {
-    background: linear-gradient(135deg, #0A2540 0%, #1A3A5C 100%);
-    color: white;
+    background: var(--gradient-primary);
+    color: var(--color-text-inverse);
     padding: 3rem 1.5rem 2rem;
     margin-top: 6rem;
     border-top: 3px solid var(--color-accent);
@@ -36,12 +36,12 @@
 
 .badge {
     display: inline-block;
-    background: rgba(245, 158, 11, 0.15);
+    background: rgba(139, 197, 63, 0.15);
     border: 1px solid var(--color-accent);
     color: var(--color-accent);
     padding: 0.25rem 0.75rem;
-    border-radius: 1rem;
-    font-size: 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -62,19 +62,21 @@
 }
 
 .copyright {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.9);
+    font-size: var(--font-size-base);
+    color: var(--color-text-inverse);
+    opacity: 0.9;
     margin: 0;
 }
 
 .copyright strong {
-    color: white;
+    color: var(--color-text-inverse);
     font-weight: 600;
 }
 
 .tagline {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: var(--font-size-sm);
+    color: var(--color-text-inverse);
+    opacity: 0.6;
     margin: 0;
     font-style: italic;
 }
@@ -131,10 +133,10 @@
 
 /* Hover effect for the domain name */
 .domainName {
-    transition: all 0.3s ease;
+    transition: var(--transition-base);
 }
 
 .footer:hover .domainName {
-    color: #FCD34D;
-    text-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+    color: var(--color-accent-light);
+    text-shadow: var(--shadow-glow);
 }
