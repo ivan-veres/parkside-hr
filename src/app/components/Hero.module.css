@@ -14,54 +14,60 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--gradient-hero);
+    background-color: #1A1A1A;
+    background-image:
+        radial-gradient(circle at 0% 0%, rgba(139, 197, 63, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 0%, rgba(160, 214, 85, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(111, 168, 46, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 0% 100%, rgba(139, 197, 63, 0.15) 0%, transparent 50%);
     z-index: -1;
 }
 
 .gradientOverlay {
-    position: absolute;
+    display: none;
+}
+
+/* ... particles ... */
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+    animation: fadeIn 0.8s ease-out 0.8s backwards;
+}
+
+.navbar {
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    bottom: 0;
-    background: radial-gradient(circle at 50% 50%, rgba(245, 158, 11, 0.1) 0%, transparent 50%);
-    animation: pulse 4s ease-in-out infinite;
+    padding: var(--spacing-md) var(--spacing-xl);
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-2xl);
+    z-index: 100;
+    background: rgba(26, 26, 26, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-base);
 }
 
-.particles {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+.navLink {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: all var(--transition-base);
 }
 
-.particle {
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, transparent 70%);
-    animation: float 8s ease-in-out infinite;
-}
-
-.particle:nth-child(1) {
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-}
-
-.particle:nth-child(2) {
-    top: 60%;
-    right: 10%;
-    animation-delay: 2s;
-    animation-duration: 10s;
-}
-
-.particle:nth-child(3) {
-    bottom: 10%;
-    left: 50%;
-    animation-delay: 4s;
-    animation-duration: 12s;
+.navLink:hover {
+    color: var(--color-accent);
+    text-shadow: 0 0 10px rgba(139, 197, 63, 0.5);
 }
 
 .heroContent {
@@ -69,6 +75,7 @@
     text-align: center;
     z-index: 1;
     animation: fadeDown 1s ease-out;
+    padding-top: var(--spacing-3xl);
 }
 
 .badge {
@@ -76,8 +83,10 @@
     align-items: center;
     gap: var(--spacing-xs);
     padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(245, 158, 11, 0.1);
-    border: 1px solid var(--color-accent);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: var(--radius-full);
     color: var(--color-accent);
     font-size: var(--font-size-sm);
@@ -86,6 +95,7 @@
     letter-spacing: 0.05em;
     margin-bottom: var(--spacing-lg);
     animation: slideInLeft 0.8s ease-out 0.2s backwards;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 .badgeDot {
@@ -99,42 +109,35 @@
 .domainName {
     font-size: var(--font-size-7xl);
     font-weight: 800;
-    color: var(--color-text-inverse);
+    color: #FFFFFF;
     margin-bottom: var(--spacing-md);
     letter-spacing: -0.03em;
     animation: slideInRight 0.8s ease-out 0.4s backwards;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-.tld {
-    color: var(--color-accent);
-}
-
-.tagline {
-    font-size: var(--font-size-xl);
-    color: rgba(255, 255, 255, 0.8);
-    max-width: 600px;
-    margin: 0 auto var(--spacing-xl);
-    line-height: 1.6;
-    animation: fadeIn 0.8s ease-out 0.6s backwards;
-}
-
-.features {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-xl);
-    margin-bottom: var(--spacing-2xl);
-    flex-wrap: wrap;
-    animation: fadeIn 0.8s ease-out 0.8s backwards;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 0 60px rgba(139, 197, 63, 0.2);
 }
 
 .feature {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    gap: var(--spacing-sm);
     color: var(--color-text-inverse);
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-base);
     font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-full);
+    transition: all var(--transition-base);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.feature:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .icon {
@@ -173,7 +176,8 @@
 
 .primaryButton:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-xl), 0 0 40px rgba(245, 158, 11, 0.4);
+    box-shadow: var(--shadow-xl), 0 0 20px rgba(245, 158, 11, 0.2);
+    color: var(--color-primary);
 }
 
 .primaryButton:active {
@@ -193,8 +197,9 @@
 .secondaryButton {
     background: rgba(255, 255, 255, 0.1);
     color: var(--color-text-inverse);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .secondaryButton:hover {

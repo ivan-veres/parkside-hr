@@ -36,7 +36,7 @@ export default function RootLayout({
                 <meta property="og:description" content="Acquire this premium Croatian domain name for LIDL's PARKSIDE brand." />
                 <meta property="og:type" content="website" />
             </head>
-            <body>
+            <body suppressHydrationWarning={true}>
                 <GoogleReCaptchaProvider
                     reCaptchaKey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY ?? ''}
                     scriptProps={{
