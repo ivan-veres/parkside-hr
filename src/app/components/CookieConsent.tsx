@@ -59,26 +59,26 @@ export default function CookieConsent({ onAccept, onDecline }: CookieConsentProp
                         </svg>
                     </div>
                     <div className={styles.text}>
-                        <h3 className={styles.title}>Cookie Notice</h3>
+                        <h3 className={styles.title}>Obavijest o Kolačićima</h3>
                         <p className={styles.description}>
-                            We use cookies to enhance your experience and analyze site traffic via Google Analytics. This site also uses Google reCAPTCHA.
-                            By continuing, you accept our use of cookies and agree to Google&apos;s{' '}
+                            Koristimo kolačiće kako bismo poboljšali vaše iskustvo i analizirali promet na stranici putem Google Analyticsa. Ova stranica također koristi Google reCAPTCHA.
+                            Nastavkom prihvaćate našu upotrebu kolačića i slažete se s Googleovim{' '}
                             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
-                                Privacy Policy
+                                Pravilima privatnosti
                             </a>{' '}
-                            and{' '}
+                            i{' '}
                             <a href="https://policies.google.com/terms" target="_blank" rel="noopener noreferrer">
-                                Terms of Service
+                                Uvjetima pružanja usluge
                             </a>.
                         </p>
                     </div>
                 </div>
                 <div className={styles.actions}>
                     <button onClick={declineCookies} className={styles.declineButton}>
-                        Decline
+                        Odbij
                     </button>
                     <button onClick={acceptCookies} className={styles.acceptButton}>
-                        Accept
+                        Prihvati
                     </button>
                 </div>
             </div>

@@ -27,13 +27,14 @@ export default function RootLayout({
     const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
 
     return (
-        <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
+        <html lang="hr" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
             <head>
-                <title>Premium Domain For Sale | Parkside.hr</title>
-                <meta name="description" content="Acquire this premium Croatian domain name - perfect for LIDL's PARKSIDE brand expansion into Croatia. Premium .hr extension for local market presence." />
-                <meta name="keywords" content="domain for sale, premium domain, parkside.hr, Croatian domain, LIDL PARKSIDE, Croatia domain" />
-                <meta property="og:title" content="Premium Domain For Sale | Parkside.hr" />
-                <meta property="og:description" content="Acquire this premium Croatian domain name for LIDL's PARKSIDE brand." />
+                <title>Park Side | Priroda i Zajednica</title>
+                <meta name="description" content="Otkrijte Park Side - gdje se priroda susreće s zajednicom. Istražite naše zelene površine, događanja i aktivnosti." />
+                <meta name="keywords" content="park, priroda, zajednica, zelene površine, događanja, opuštanje" />
+                <link rel="alternate" hrefLang="hr" href="https://parkside.hr" />
+                <meta property="og:title" content="Park Side | Priroda i Zajednica" />
+                <meta property="og:description" content="Otkrijte Park Side - gdje se priroda susreće s zajednicom." />
                 <meta property="og:type" content="website" />
             </head>
             <body suppressHydrationWarning={true}>

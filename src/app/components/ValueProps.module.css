@@ -142,7 +142,7 @@
 }
 
 .statValue {
-    font-size: var(--font-size-5xl);
+    font-size: var(--font-size-4xl);
     font-weight: 800;
     background: var(--gradient-accent);
     -webkit-background-clip: text;

@@ -13,23 +13,24 @@ export default function Hero() {
             </div>
 
             <nav className={styles.navbar}>
-                <a href="#details" className={styles.navLink}>Benefits</a>
-                <a href="#contact" className={styles.navLink}>Contact</a>
+                <a href="#" className={styles.navLink}>Početna</a>
+                <a href="#details" className={styles.navLink}>Istraži</a>
+                <a href="#contact" className={styles.navLink}>Kontakt</a>
             </nav>
 
             <div className="container">
                 <div className={styles.heroContent}>
                     <div className={styles.badge}>
                         <span className={styles.badgeDot}></span>
-                        For Sale
+                        Otvoreno Svaki Dan
                     </div>
 
                     <h1 className={styles.domainName}>
-                        Parkside<span className={styles.tld}>.hr</span>
+                        Park Side
                     </h1>
 
                     <p className={styles.tagline}>
-                        A premium Croatian domain for LIDL&apos;s PARKSIDE brand - tools, DIY, and home improvement
+                        Gdje se priroda susreće s zajednicom. Otkrijte svoj savršeni bijeg u srcu grada.
                     </p>
 
                     <div className={styles.features}>
@@ -37,31 +38,31 @@ export default function Hero() {
                             <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Memorable</span>
+                            <span>Priroda</span>
                         </div>
                         <div className={styles.feature}>
                             <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>Professional</span>
+                            <span>Zajednica</span>
                         </div>
                         <div className={styles.feature}>
                             <svg className={styles.icon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span>SEO-Friendly</span>
+                            <span>Mir</span>
                         </div>
                     </div>
 
                     <div className={styles.cta}>
                         <a href="#contact" className={styles.primaryButton}>
-                            Make an Offer
+                            Pridružite nam se
                             <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </a>
                         <a href="#details" className={styles.secondaryButton}>
-                            Learn More
+                            Istraži
                         </a>
                     </div>
                 </div>

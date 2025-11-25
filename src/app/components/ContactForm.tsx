@@ -40,7 +40,7 @@ export default function ContactForm() {
         e.preventDefault()
 
         if (!executeRecaptcha) {
-            setStatus('reCAPTCHA not loaded. Please refresh the page.')
+            setStatus('reCAPTCHA nije učitan. Molimo osvježite stranicu.')
             setStatusType('error')
             return
         }
@@ -67,7 +67,7 @@ export default function ContactForm() {
             const data = await response.json()
 
             if (response.ok) {
-                setStatus('Thank you! Your offer has been sent successfully.')
+                setStatus('Hvala! Vaša poruka je uspješno poslana.')
                 setStatusType('success')
                 // Reset form after successful submission
                 setTimeout(() => {
@@ -76,12 +76,12 @@ export default function ContactForm() {
                     setStatusType('')
                 }, 5000)
             } else {
-                setStatus(`Error: ${data.error || 'Failed to send offer. Please try again.'}`)
+                setStatus(`Greška: ${data.error || 'Neuspjelo slanje poruke. Molimo pokušajte ponovno.'}`)
                 setStatusType('error')
             }
         } catch (error) {
             console.error('Submission error:', error)
-            setStatus('Network error. Please check your connection and try again.')
+            setStatus('Mrežna greška. Molimo provjerite svoju vezu i pokušajte ponovno.')
             setStatusType('error')
         } finally {
             setIsSubmitting(false)
@@ -99,14 +99,14 @@ export default function ContactForm() {
                             {!mounted ? (
                                 <div className={styles.loadingPlaceholder}>
                                     <div className={styles.spinner}></div>
-                                    <p>Loading form...</p>
+                                    <p>Učitavanje obrasca...</p>
                                 </div>
                             ) : (
                                 <>
-                                    <h2 className={styles.title}>Get in Touch</h2>
+                                    <h2 className={styles.title}>Pridružite se Zajednici</h2>
                                     <div className={styles.formGroup}>
                                         <label htmlFor="name" className={styles.label}>
-                                            Full Name *
+                                            Ime i Prezime *
                                         </label>
                                         <input
                                             type="text"
@@ -118,14 +118,14 @@ export default function ContactForm() {
                                             aria-required="true"
                                             disabled={isSubmitting}
                                             className={styles.input}
-                                            placeholder="John Doe"
-                                            aria-label="Full Name"
+                                            placeholder="Ivan Horvat"
+                                            aria-label="Ime i Prezime"
                                         />
                                     </div>
 
                                     <div className={styles.formGroup}>
                                         <label htmlFor="email" className={styles.label}>
-                                            Email Address *
+                                            Email Adresa *
                                         </label>
                                         <input
                                             type="email"
@@ -137,14 +137,14 @@ export default function ContactForm() {
                                             aria-required="true"
                                             disabled={isSubmitting}
                                             className={styles.input}
-                                            placeholder="john@example.com"
-                                            aria-label="Email Address"
+                                            placeholder="ivan@primjer.com"
+                                            aria-label="Email Adresa"
                                         />
                                     </div>
 
                                     <div className={styles.formGroup}>
                                         <label htmlFor="offer" className={styles.label}>
-                                            Your Offer *
+                                            Tema *
                                         </label>
                                         <input
                                             type="text"
@@ -156,14 +156,14 @@ export default function ContactForm() {
                                             aria-required="true"
                                             disabled={isSubmitting}
                                             className={styles.input}
-                                            placeholder="€10,000"
-                                            aria-label="Your Offer"
+                                            placeholder="Opći Upit"
+                                            aria-label="Tema"
                                         />
                                     </div>
 
                                     <div className={styles.formGroup}>
                                         <label htmlFor="message" className={styles.label}>
-                                            Message
+                                            Poruka
                                         </label>
                                         <textarea
                                             id="message"
@@ -173,8 +173,8 @@ export default function ContactForm() {
                                             disabled={isSubmitting}
                                             rows={5}
                                             className={styles.textarea}
-                                            placeholder="Tell us about your business and plans for this domain..."
-                                            aria-label="Message"
+                                            placeholder="Recite nam kako ste proveli dan u parku"
+                                            aria-label="Poruka"
                                         />
                                     </div>
 
@@ -198,21 +198,17 @@ export default function ContactForm() {
                                                 <svg className={styles.spinner} viewBox="0 0 24 24" fill="none">
                                                     <circle className={styles.spinnerCircle} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                                                 </svg>
-                                                Sending...
+                                                Šaljem...
                                             </>
                                         ) : (
                                             <>
-                                                Submit Offer
+                                                Pošalji Poruku
                                                 <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
                                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                                 </svg>
                                             </>
                                         )}
                                     </button>
-
-                                    <p className={styles.disclaimer}>
-                                        By submitting this form, you agree to our terms and conditions. All offers are non-binding until a formal agreement is reached.
-                                    </p>
                                 </>
                             )}
                         </form>
