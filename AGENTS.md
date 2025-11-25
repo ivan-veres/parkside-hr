@@ -401,4 +401,4 @@ The project is complete when:
 
 ---
 
-This document serves as the primary guide for AI agents working on the parkside.hr domain. Follow these guidelines to ensure a professional, secure, and conversion-optimized result.
+This document serves as the primary guide for AI agents working on the Park Side community website. Follow these guidelines to ensure a professional, secure, and conversion-optimized result.
