@@ -1,20 +1,19 @@
-# parkside.hr - Premium Croatian Domain For Sale
+# Park Side - Nature & Community
 
-**Visit [parkside.hr](https://parkside.hr) to make an offer.**
+**Welcome to Park Side.**
 
-This repository contains the source code for the domain sale landing page.
+This repository contains the source code for the Park Side community website, a digital space dedicated to our local nature park.
 
-## About the Domain
+## About Park Side
 
-**parkside.hr** is a premium Croatian (.hr) domain name, perfect for:
-- LIDL's PARKSIDE brand expansion into Croatia
-- Real estate projects named "Parkside"
-- Business ventures in the Croatian market
+**Park Side** is a community-driven initiative to promote:
+- 🌿 Connection with nature
+- 🤝 Community gatherings and events
+- 🧘‍♂️ Peace and relaxation in the heart of the city
+- 🏃‍♂️ Active lifestyle and outdoor activities
 
-## Make an Offer
+## Features
 
-Interested in acquiring this domain? Visit **[parkside.hr](https://parkside.hr)** and submit your offer through the contact form.
-
----
-
-© 2025 Jotunn d.o.o. All rights reserved.
+- **Community Events**: Stay updated on workshops, picnics, and gatherings.
+- **Park Guide**: Explore the features of our park, from quiet zones to active play areas.
+- **Get Involved**: Join our community and help maintain our green oasis.

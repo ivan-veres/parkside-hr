@@ -62,6 +62,7 @@ export default function CookieConsent({ onAccept, onDecline }: CookieConsentProp
                         <h3 className={styles.title}>Obavijest o Kolačićima</h3>
                         <p className={styles.description}>
                             Koristimo kolačiće kako bismo poboljšali vaše iskustvo i analizirali promet na stranici putem Google Analyticsa. Ova stranica također koristi Google reCAPTCHA.
+                            Više informacija potražite u našoj <a href="/privacy-policy" className={styles.link}>Politici Privatnosti</a>.
                             Nastavkom prihvaćate našu upotrebu kolačića i slažete se s Googleovim{' '}
                             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
                                 Pravilima privatnosti
@@ -82,6 +83,6 @@ export default function CookieConsent({ onAccept, onDecline }: CookieConsentProp
                     </button>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
