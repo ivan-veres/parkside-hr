@@ -3,7 +3,12 @@
 import { useState, useEffect } from 'react'
 import styles from './CookieConsent.module.css'
 
-export default function CookieConsent() {
+interface CookieConsentProps {
+    onAccept?: () => void
+    onDecline?: () => void
+}
+
+export default function CookieConsent({ onAccept, onDecline }: CookieConsentProps) {
     const [showBanner, setShowBanner] = useState(false)
     const [isClosing, setIsClosing] = useState(false)
 
@@ -13,12 +18,21 @@ export default function CookieConsent() {
         if (!consent) {
             // Show banner after a short delay
             setTimeout(() => setShowBanner(true), 1000)
+        } else if (consent === 'accepted' && onAccept) {
+            onAccept()
         }
-    }, [])
+    }, [onAccept])
 
     const handleClose = (consent: string) => {
         setIsClosing(true)
         localStorage.setItem('cookie-consent', consent)
+
+        if (consent === 'accepted' && onAccept) {
+            onAccept()
+        } else if (consent === 'declined' && onDecline) {
+            onDecline()
+        }
+
         // Wait for animation to complete before hiding
         setTimeout(() => {
             setShowBanner(false)
@@ -47,7 +61,7 @@ export default function CookieConsent() {
                     <div className={styles.text}>
                         <h3 className={styles.title}>Cookie Notice</h3>
                         <p className={styles.description}>
-                            We use cookies to enhance your experience. This site uses Google reCAPTCHA to protect against spam.
+                            We use cookies to enhance your experience and analyze site traffic via Google Analytics. This site also uses Google reCAPTCHA.
                             By continuing, you accept our use of cookies and agree to Google&apos;s{' '}
                             <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">
                                 Privacy Policy

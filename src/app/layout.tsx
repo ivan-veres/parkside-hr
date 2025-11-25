@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
@@ -23,6 +24,8 @@ export default function RootLayout({
 }: {
     children: React.ReactNode
 }) {
+    const [analyticsEnabled, setAnalyticsEnabled] = useState(false)
+
     return (
         <html lang="en" className={`${inter.variable} ${plusJakarta.variable}`} suppressHydrationWarning>
             <head>
@@ -43,9 +46,9 @@ export default function RootLayout({
                     }}
                 >
                     {children}
-                    <CookieConsent />
+                    <CookieConsent onAccept={() => setAnalyticsEnabled(true)} />
                 </GoogleReCaptchaProvider>
-                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
+                {analyticsEnabled && <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />}
             </body>
         </html>
     )
