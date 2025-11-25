@@ -1,9 +1,18 @@
+import Image from 'next/image'
 import styles from './Hero.module.css'
 
 export default function Hero() {
     return (
         <section className={styles.hero}>
             <div className={styles.heroBackground}>
+                <Image
+                    src="/peaceful_park_hero.png"
+                    alt="Park Side Hero Background"
+                    fill
+                    priority
+                    quality={90}
+                    style={{ objectFit: 'cover' }}
+                />
                 <div className={styles.gradientOverlay}></div>
                 <div className={styles.particles}>
                     <div className={styles.particle}></div>

@@ -15,9 +15,6 @@
     right: 0;
     bottom: 0;
     background-color: #1A1A1A;
-    background-image: url('/peaceful_park_hero.png');
-    background-size: cover;
-    background-position: center;
     z-index: -1;
 }
 
