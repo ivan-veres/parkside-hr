@@ -1,5 +1,6 @@
 'use client'
 
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
 import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
 import CookieConsent from './components/CookieConsent'
@@ -44,7 +45,9 @@ export default function RootLayout({
                     {children}
                     <CookieConsent />
                 </GoogleReCaptchaProvider>
+                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID ?? ''} />
             </body>
         </html>
     )
 }
+
