@@ -7,7 +7,7 @@ export default function Hero() {
             <div className={styles.heroBackground}>
                 <Image
                     src="/peaceful_park_hero.png"
-                    alt="Park Side Hero Background"
+                    alt="Peaceful nature park with green spaces and walking paths"
                     fill
                     priority
                     quality={90}
