@@ -17,6 +17,9 @@ export default function Footer() {
                         <p className={styles.copyright}>
                             © {currentYear} <strong>Park Side Community</strong>. All rights reserved.
                         </p>
+                        <div className={styles.links}>
+                            <a href="/privacy-policy" className={styles.link}>Politika Privatnosti</a>
+                        </div>
                         <p className={styles.tagline}>
                             Nature & Community
                         </p>
