@@ -209,6 +209,11 @@ export default function ContactForm() {
                                             </>
                                         )}
                                     </button>
+                                    <p className={styles.disclaimer}>
+                                        Ova stranica je zaštićena s reCAPTCHA i primjenjuju se Google
+                                        <a href="https://policies.google.com/privacy" target="_blank" rel="noreferrer"> Politika Privatnosti</a> i
+                                        <a href="https://policies.google.com/terms" target="_blank" rel="noreferrer"> Uvjeti Korištenja</a>.
+                                    </p>
                                 </>
                             )}
                         </form>

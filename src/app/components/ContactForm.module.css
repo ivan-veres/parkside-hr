@@ -219,7 +219,7 @@
     }
 
     .form {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
     }
 }
 
