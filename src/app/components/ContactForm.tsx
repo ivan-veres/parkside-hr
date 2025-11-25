@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, FormEvent, ChangeEvent } from 'react'
+import { useState, useEffect, FormEvent, ChangeEvent } from 'react'
 import { useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 import styles from './ContactForm.module.css'
 
@@ -21,7 +21,13 @@ export default function ContactForm() {
     })
 
     const [status, setStatus] = useState<string>('')
+    const [statusType, setStatusType] = useState<'success' | 'error' | ''>('')
     const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
+    const [mounted, setMounted] = useState(false)
+
+    useEffect(() => {
+        setMounted(true)
+    }, [])
 
     const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setFormData({
@@ -35,11 +41,13 @@ export default function ContactForm() {
 
         if (!executeRecaptcha) {
             setStatus('reCAPTCHA not loaded. Please refresh the page.')
+            setStatusType('error')
             return
         }
 
         setIsSubmitting(true)
         setStatus('')
+        setStatusType('')
 
         try {
             // Execute reCAPTCHA to get token
@@ -60,17 +68,21 @@ export default function ContactForm() {
 
             if (response.ok) {
                 setStatus('Thank you! Your offer has been sent successfully.')
+                setStatusType('success')
                 // Reset form after successful submission
                 setTimeout(() => {
                     setFormData({ name: '', email: '', offer: '', message: '' })
                     setStatus('')
+                    setStatusType('')
                 }, 5000)
             } else {
                 setStatus(`Error: ${data.error || 'Failed to send offer. Please try again.'}`)
+                setStatusType('error')
             }
         } catch (error) {
             console.error('Submission error:', error)
             setStatus('Network error. Please check your connection and try again.')
+            setStatusType('error')
         } finally {
             setIsSubmitting(false)
         }
@@ -115,104 +127,113 @@ export default function ContactForm() {
 
                     <div className={styles.formWrapper}>
                         <form onSubmit={handleSubmit} className={styles.form}>
-                            <div className={styles.formGroup}>
-                                <label htmlFor="name" className={styles.label}>
-                                    Full Name *
-                                </label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleChange}
-                                    required
-                                    disabled={isSubmitting}
-                                    className={styles.input}
-                                    placeholder="John Doe"
-                                />
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label htmlFor="email" className={styles.label}>
-                                    Email Address *
-                                </label>
-                                <input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleChange}
-                                    required
-                                    disabled={isSubmitting}
-                                    className={styles.input}
-                                    placeholder="john@example.com"
-                                />
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label htmlFor="offer" className={styles.label}>
-                                    Your Offer *
-                                </label>
-                                <input
-                                    type="text"
-                                    id="offer"
-                                    name="offer"
-                                    value={formData.offer}
-                                    onChange={handleChange}
-                                    required
-                                    disabled={isSubmitting}
-                                    className={styles.input}
-                                    placeholder="€10,000"
-                                />
-                            </div>
-
-                            <div className={styles.formGroup}>
-                                <label htmlFor="message" className={styles.label}>
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleChange}
-                                    disabled={isSubmitting}
-                                    rows={5}
-                                    className={styles.textarea}
-                                    placeholder="Tell us about your business and plans for this domain..."
-                                />
-                            </div>
-
-                            {status && (
-                                <div className={`${styles.status} ${status.includes('✅') ? styles.statusSuccess : styles.statusError}`}>
-                                    {status}
+                            {!mounted ? (
+                                <div className={styles.loadingPlaceholder}>
+                                    <div className={styles.spinner}></div>
+                                    <p>Loading form...</p>
                                 </div>
+                            ) : (
+                                <>
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="name" className={styles.label}>
+                                            Full Name *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="name"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleChange}
+                                            required
+                                            disabled={isSubmitting}
+                                            className={styles.input}
+                                            placeholder="John Doe"
+                                        />
+                                    </div>
+
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="email" className={styles.label}>
+                                            Email Address *
+                                        </label>
+                                        <input
+                                            type="email"
+                                            id="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleChange}
+                                            required
+                                            disabled={isSubmitting}
+                                            className={styles.input}
+                                            placeholder="john@example.com"
+                                        />
+                                    </div>
+
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="offer" className={styles.label}>
+                                            Your Offer *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            id="offer"
+                                            name="offer"
+                                            value={formData.offer}
+                                            onChange={handleChange}
+                                            required
+                                            disabled={isSubmitting}
+                                            className={styles.input}
+                                            placeholder="€10,000"
+                                        />
+                                    </div>
+
+                                    <div className={styles.formGroup}>
+                                        <label htmlFor="message" className={styles.label}>
+                                            Message
+                                        </label>
+                                        <textarea
+                                            id="message"
+                                            name="message"
+                                            value={formData.message}
+                                            onChange={handleChange}
+                                            disabled={isSubmitting}
+                                            rows={5}
+                                            className={styles.textarea}
+                                            placeholder="Tell us about your business and plans for this domain..."
+                                        />
+                                    </div>
+
+                                    {status && (
+                                        <div className={`${styles.status} ${statusType === 'success' ? styles.statusSuccess : styles.statusError}`}>
+                                            {status}
+                                        </div>
+                                    )}
+
+                                    <button
+                                        type="submit"
+                                        className={styles.submitButton}
+                                        disabled={isSubmitting}
+                                    >
+                                        {isSubmitting ? (
+                                            <>
+                                                <svg className={styles.spinner} viewBox="0 0 24 24" fill="none">
+                                                    <circle className={styles.spinnerCircle} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                                                </svg>
+                                                Sending...
+                                            </>
+                                        ) : (
+                                            <>
+                                                Submit Offer
+                                                <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                                </svg>
+                                            </>
+                                        )}
+                                    </button>
+
+                                    <p className={styles.disclaimer}>
+                                        By submitting this form, you agree to our terms and conditions. All offers are non-binding until a formal agreement is reached.
+                                    </p>
+                                </>
                             )}
-
-                            <button
-                                type="submit"
-                                className={styles.submitButton}
-                                disabled={isSubmitting}
-                            >
-                                {isSubmitting ? (
-                                    <>
-                                        <svg className={styles.spinner} viewBox="0 0 24 24" fill="none">
-                                            <circle className={styles.spinnerCircle} cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                                        </svg>
-                                        Sending...
-                                    </>
-                                ) : (
-                                    <>
-                                        Submit Offer
-                                        <svg className={styles.buttonIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                        </svg>
-                                    </>
-                                )}
-                            </button>
-
-                            <p className={styles.disclaimer}>
-                                By submitting this form, you agree to our terms and conditions. All offers are non-binding until a formal agreement is reached.
-                            </p>
                         </form>
                     </div>
                 </div>
