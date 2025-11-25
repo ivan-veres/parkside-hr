@@ -315,7 +315,6 @@
     .cta {
         flex-direction: column;
         width: 100%;
-        padding: 0 var(--spacing-md);
         margin-bottom: var(--spacing-2xl);
     }
 
@@ -327,5 +326,17 @@
 
     .scrollIndicator {
         bottom: var(--spacing-xl);
+    }
+
+    .navbar {
+        padding: var(--spacing-sm);
+        gap: var(--spacing-sm);
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .navLink {
+        font-size: var(--font-size-xs);
+        padding: var(--spacing-xs);
     }
 }

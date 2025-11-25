@@ -40,7 +40,7 @@
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--spacing-lg);
     margin-bottom: var(--spacing-3xl);
 }
@@ -190,10 +190,19 @@
     .stats {
         grid-template-columns: repeat(2, 1fr);
         padding: var(--spacing-lg);
-        gap: var(--spacing-md);
+        gap: var(--spacing-sm);
+    }
+
+    .stat {
+        padding: var(--spacing-sm);
     }
 
     .statValue {
-        font-size: var(--font-size-4xl);
+        font-size: var(--font-size-3xl);
+    }
+
+    .statLabel {
+        font-size: var(--font-size-xs);
+        letter-spacing: 0.05em;
     }
 }
