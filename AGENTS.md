@@ -1,8 +1,8 @@
 # AGENTS.md
 
-This project is a simple, professional landing page for the parkside.hr domain sale with a contact form protected by reCAPTCHA.
+This project is a modern, responsive website for the Park Side nature park community.
 
-As an agent, follow the instructions in this file to deliver a clean, secure, and conversion-optimized domain sale page.
+As an agent, follow the instructions in this file to deliver a clean, secure, and conversion-optimized community website.
 
 ## TL;DR for Agents
 
@@ -14,13 +14,12 @@ As an agent, follow the instructions in this file to deliver a clean, secure, an
 
 ## Project Context (Canonical)
 
-**Parkside.hr Domain Sale Landing Page** is a single-page website that:
-- Displays that the domain parkside.hr is for sale
-- Provides professional presentation to maximize domain value
-- Includes a contact form with reCAPTCHA v3 protection
-- Sends form submissions via email or stores them securely
+**Park Side Website** is a single-page community site that:
+- Showcases the beauty and features of the local nature park
+- Promotes community events and gatherings
+- Provides a contact form for community inquiries
 - Loads fast and works on all devices
-- Is SEO-optimized for domain sale searches
+- Is SEO-optimized for local nature and community searches
 
 ## Tech Stack
 
@@ -106,8 +105,8 @@ parkside-hr/
 ### 1. Landing Page Content
 
 **Must include:**
-- Clear headline: "parkside.hr - Domain For Sale"
-- Professional description of the domain value
+- Clear headline: "Park Side - Nature & Community"
+- Engaging description of the park's features and community value
 - Contact form (name, email, message, phone optional)
 - reCAPTCHA v3 (invisible, scores requests)
 - Professional design (trust signals)
@@ -263,7 +262,6 @@ npm run dev
 - [ ] reCAPTCHA v3 working (check score in logs)
 - [ ] Rate limiting prevents spam
 - [ ] XSS attacks prevented (try `<script>alert('xss')</script>`)
-- [ ] SQL injection prevented (if using database)
 - [ ] Environment variables not exposed
 
 **Performance:**
@@ -283,45 +281,9 @@ npm run dev
 **SEO:**
 - [ ] Meta tags present (title, description)
 - [ ] Open Graph tags for social sharing
-- [ ] Structured data (JSON-LD) for domain sale
+- [ ] Structured data (JSON-LD) for community site
 - [ ] Robots.txt allows indexing
 - [ ] Sitemap.xml generated
-
-### Deployment to Vercel
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
-vercel login
-
-# Deploy
-vercel
-
-# Set environment variables in Vercel dashboard
-# https://vercel.com/your-username/parkside-hr/settings/environment-variables
-
-# Deploy to production
-vercel --prod
-
-# Configure custom domain
-# In Vercel dashboard: Settings > Domains > Add parkside.hr
-# Update DNS records as instructed by Vercel
-```
-
-### DNS Configuration
-
-**Required DNS Records:**
-```
-# Point domain to Vercel
-A     @     76.76.21.21
-CNAME www   cname.vercel-dns.com
-
-# Email (if using custom domain for sending)
-MX    @     (your email provider's MX records)
-TXT   @     (SPF, DKIM records from your email provider)
-```
 
 ## SEO Optimization
 
@@ -330,16 +292,16 @@ TXT   @     (SPF, DKIM records from your email provider)
 ```typescript
 // app/layout.tsx or page.tsx
 export const metadata = {
-  title: 'parkside.hr - Premium .hr Domain For Sale',
-  description: 'Professional Croatian domain name parkside.hr available for purchase. Perfect for real estate, coworking spaces, or business ventures in Croatia.',
-  keywords: 'parkside.hr, domain for sale, Croatian domain, .hr domain, premium domain',
+  title: 'Park Side - Nature & Community',
+  description: 'Discover Park Side, your local green oasis. Join our community for events, relaxation, and outdoor activities.',
+  keywords: 'park side, nature park, community, events, green space, relaxation',
   openGraph: {
-    title: 'parkside.hr - Premium Domain For Sale',
-    description: 'Professional Croatian domain name available for purchase',
+    title: 'Park Side - Nature & Community',
+    description: 'Discover Park Side, your local green oasis.',
     url: 'https://parkside.hr',
-    siteName: 'parkside.hr',
+    siteName: 'Park Side',
     images: ['/og-image.png'],
-    locale: 'en_US',
+    locale: 'hr_HR',
     type: 'website',
   },
 };
@@ -351,14 +313,13 @@ export const metadata = {
 // Add to page.tsx
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "Product",
-  "name": "parkside.hr Domain",
-  "description": "Premium Croatian .hr domain name for sale",
-  "offers": {
-    "@type": "Offer",
-    "availability": "https://schema.org/InStock",
-    "priceCurrency": "EUR",
-    "price": "Contact for price"
+  "@type": "Park",
+  "name": "Park Side",
+  "description": "A community nature park and green space",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Zagreb",
+    "addressCountry": "HR"
   }
 };
 ```
@@ -420,14 +381,14 @@ Common patterns for this project:
 
 - **Keep it simple**: Don't over-engineer a landing page
 - **Security first**: This is a public-facing form, prioritize security
-- **Professional appearance**: This represents a domain sale, make it look valuable
+- **Professional appearance**: This represents a community initiative, make it look welcoming
 - **Fast loading**: Speed creates trust and improves conversion
 - **Test thoroughly**: Test form submission, validation, and reCAPTCHA
 
 ## Success Criteria
 
 The project is complete when:
-- ✅ Page loads and displays professional domain sale message
+- ✅ Page loads and displays welcoming community message
 - ✅ Contact form submits successfully
 - ✅ Emails arrive with correct information
 - ✅ reCAPTCHA successfully blocks bots (test with score < 0.5)
@@ -440,4 +401,4 @@ The project is complete when:
 
 ---
 
-This document serves as the primary guide for AI agents working on the parkside.hr domain sale landing page. Follow these guidelines to ensure a professional, secure, and conversion-optimized result.
+This document serves as the primary guide for AI agents working on the parkside.hr domain. Follow these guidelines to ensure a professional, secure, and conversion-optimized result.
