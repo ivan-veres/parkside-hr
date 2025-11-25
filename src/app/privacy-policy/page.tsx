@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 
 export const metadata = {
     title: 'Politika Privatnosti | Park Side',
@@ -8,6 +9,12 @@ export const metadata = {
 export default function PrivacyPolicy() {
     return (
         <main className="container" style={{ padding: 'var(--spacing-3xl) var(--spacing-md)', maxWidth: '800px' }}>
+            <div style={{ marginBottom: 'var(--spacing-lg)' }}>
+                <Link href="/" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontWeight: 600 }}>
+                    ← Povratak na naslovnicu
+                </Link>
+            </div>
+
             <h1>Politika Privatnosti</h1>
             <p><strong>Posljednje ažuriranje: {new Date().toLocaleDateString('hr-HR')}</strong></p>
 
@@ -74,6 +81,12 @@ export default function PrivacyPolicy() {
                     Ako imate bilo kakvih pitanja o ovoj Politici privatnosti, slobodno nas kontaktirajte putem obrasca na našoj web stranici.
                 </p>
             </section>
+
+            <div style={{ marginTop: 'var(--spacing-2xl)', borderTop: '1px solid var(--color-border)', paddingTop: 'var(--spacing-lg)' }}>
+                <Link href="/" style={{ color: 'var(--color-accent)', textDecoration: 'none', fontWeight: 600 }}>
+                    ← Povratak na naslovnicu
+                </Link>
+            </div>
         </main>
     )
 }
