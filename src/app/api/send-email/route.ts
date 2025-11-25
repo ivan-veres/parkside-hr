@@ -86,7 +86,7 @@ export async function POST(request: NextRequest) {
     const { data, error } = await resend.emails.send({
       from: process.env.RESEND_FROM_EMAIL,
       to: process.env.RESEND_TO_EMAIL,
-      subject: `Domain Offer for Parkside.hr - ${body.offer}`,
+      subject: `New Message from Park Side - ${body.offer}`,
       html: `
         <!DOCTYPE html>
         <html>
@@ -157,11 +157,11 @@ export async function POST(request: NextRequest) {
           </head>
           <body>
             <div class="header">
-              <h1>New Domain Offer for <span class="domain">Parkside.hr</span></h1>
+              <h1>New Message for <span class="domain">Park Side</span></h1>
             </div>
             <div class="content">
               <div class="field">
-                <div class="field-label">Offer Amount</div>
+                <div class="field-label">Topic</div>
                 <div class="field-value offer">${body.offer}</div>
               </div>
               
@@ -187,7 +187,7 @@ export async function POST(request: NextRequest) {
               ` : ''}
               
               <div class="footer">
-                <p>This email was sent from the Parkside.hr domain sale landing page.</p>
+                <p>This email was sent from the Park Side contact form.</p>
                 <p>Received at ${new Date().toLocaleString('en-US', {
         dateStyle: 'full',
         timeStyle: 'short',
@@ -199,9 +199,9 @@ export async function POST(request: NextRequest) {
         </html>
       `,
       text: `
-New Domain Offer for Parkside.hr
+New Message for Park Side
 
-Offer Amount: ${body.offer}
+Topic: ${body.offer}
 Name: ${body.name}
 Email: ${body.email}
 
